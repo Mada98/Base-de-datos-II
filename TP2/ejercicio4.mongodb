@@ -1,0 +1,2 @@
+use("empresa")
+db.empleados.updateOne({nombre: "Ramiro"}, {$set: {direccion: {calle: "balbin", ciudad: "puan", codigo_postal: "8180"}}})

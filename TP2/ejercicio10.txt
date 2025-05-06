@@ -1,0 +1,9 @@
+Para crear un usuario con con permisos de lectura y escritura, primero utilizamos la función “db.createUser” 
+para crear el usuario, le damos un nombre, una contraseña, y roles, en este caso, le damos el rol de “readWriter”, 
+que le permite al usuario leer y escribir.
+"db.createUser({user: "tester", pwd: "12345", roles: ["readWrite"]})"
+Y los comandos necesarios para hacer backup y restauración de una base de datos son: “mongodump” y “mongorestore”. 
+Mongodump: crea un respaldo completo de todas las bases de datos y lo guarda en un directorio llamado dump/ con este comando:
+"mongodump --db nombrebasedatos"
+Mongorestore: restaura una base de datos a partir de un back up creado anteriormente con mongodump, con este comando:
+"mongorestore --uri="mongodb://localhost:27017" /ruta/al/directorio/dump".

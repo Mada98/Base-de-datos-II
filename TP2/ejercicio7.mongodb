@@ -1,0 +1,13 @@
+use("empresa")
+db.cursos.insertMany([
+    {_id: 1, nombre: "Matematica"},
+    {_id: 2, nombre: "Literatura"},
+    {_id: 3, nombre: "Biologia"},
+    {_id: 4, nombre: "Quimica"},
+    {_id: 5, nombre: "Fisica"}
+])
+db.alumnos.insertMany([
+    {nombre: "Ana", edad: 15, id_cursos: [1, 4, 5]},
+    {nombre: "Alejo", edad: 14, id_cursos: [2, 3, 4]},
+    {nombre: "Sergio", edad: 16, id_cursos: [5, 4, 1]}
+])

@@ -1,0 +1,4 @@
+Las ventajas de utilizar “Replica set” es que nos permite que a la hora de que el nodo primario falle 
+el servidor pueda ser redirigido al nodo secundario, previniendo pérdidas de datos, errores. 
+Y los beneficios que aporta el “Sharding” en una base de datos de alto volumen, es que nos permite declarar que datos 
+son más importantes que otros y distribuirlos en varios rangos, así nos facilita a la hora de manipular dichos datos. 

@@ -1,0 +1,9 @@
+use("empresa")
+db.clientes.insertMany([
+    {nombre: "Mateo", apellido: "Rodriguez"},
+    {nombre: "Ana", apellido: "Soteldo"},
+    {nombre: "Franco", apellido: "Villaruel"},
+    {nombre: "Matias", apellido: "Viñedo"},
+    {nombre: "Sergio", apellido: "Cacha"}
+])
+db.clientes.createIndex({apellido: 1, nombre: 1})
