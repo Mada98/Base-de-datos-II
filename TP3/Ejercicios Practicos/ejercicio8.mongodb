@@ -1,0 +1,10 @@
+use('tiendaOnline')
+//Tarea 1
+db.ventas.aggregate([{$lookup: 
+    {from: 'productos', localField: 'producto_id', foreignField: '_id', as: 'producto_id'}},
+    {$unwind: '$producto_id'},
+    {$group: {_id: '$producto_id.nombre', totalVendido: {$sum: 1}}},
+    {$sort: {totalVendido: -1}},
+    {$limit: 3}
+])
+//Tarea 2
