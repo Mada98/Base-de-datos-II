@@ -1,0 +1,9 @@
+use('tiendaOnline')
+//Tarea 1
+db.productos.aggregate({$project: 
+    {_id: 0, nombre: 1, precio: 1, precioConImpuesto:{ $add: ['$precio', {$multiply: ['$precio', 0.21]}]}}
+})
+//Tarea 2
+db.ventas.aggregate({$project: 
+    {_id: 1, 'cliente.nombre': 1, total: 1, descuento: {$multiply: ['$total', 0.1]}}
+})

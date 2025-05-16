@@ -1,0 +1,36 @@
+use ('tiendaOnline')
+
+// Ta complicadation este.
+//pd:lo que esta echo esta mal mal
+db.ventas.aggregate([
+    {
+        $group: {
+            _id: {cliente: "$cliente"},
+            totalGastado: {$sum: "$total"},
+            totalCompras: {$sum: 1},
+
+        }
+    },
+    {
+        $group: {
+            _id: {
+                cliente: "$cli
+            },
+            totalProductoCliente: "$cantidad"
+        }
+    },
+    {
+        $sort: {
+
+        }
+    },    
+    {
+        $project: {
+            cliente: "_id.cliente",
+            totalGastado: "totalGastado",
+            NumeroDeCompras: "totalCompras",
+            productoFavorito: {$first: "$producto_id"}
+            
+        }
+    }
+])

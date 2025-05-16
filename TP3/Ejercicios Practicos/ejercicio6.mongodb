@@ -1,0 +1,41 @@
+use('tiendaOnline')
+
+//Tarea 1
+db.ventas.aggregate([
+    {
+        $group: {
+            _id:{
+                anio: {$year: "$fecha"},
+                mes: {$month: "$fecha"}
+            },
+            totalVentas: {$sum: "$total"},
+            cantidadVentas: {$sum: 1}
+        }
+    },
+    {
+        $sort: {
+            "id_anio": 1,
+            "id_mes": 1
+        }
+    }
+])
+
+//Tarea 2
+//Falta hacer que dependiendo del numero del dia que da entre 1 y 7, asignarlo a un dia de la semana
+
+db.ventas.aggregate([
+    {
+        $group:{
+            _id: {dia: {$dayOfWeek: "$fecha"}},
+            totalVentas: {$sum: "$total"},
+            cantidadVentas:{$sum: 1}
+        }
+    },
+    {
+        $sort: { cantidadVentas: -1}
+    },
+    {
+        $limit: 1
+    }
+
+])

@@ -1,0 +1,52 @@
+use ('tiendaOnline')
+
+db.ventas.aggregate([
+  {
+    $group: {
+      _id: {
+        anio: { $year: "$fecha" },
+        mes: { $month: "$fecha" },
+        producto_id: "$producto_id"
+      },
+      cantidadVendida: { $sum: "$cantidad" },
+      totalVentasProducto: { $sum: "$total" }
+    }
+  },
+  {
+    $sort: {
+      "_id.anio": 1,
+      "_id.mes": 1,
+      cantidadVendida: -1
+    }
+  },
+  {
+    $group: {
+      _id: {
+        anio: "$_id.anio",
+        mes: "$_id.mes"
+      },
+      producto_id: { $first: "$_id.producto_id" },
+      cantidadVendida: { $first: "$cantidadVendida" },
+      totalVentasMes: { $sum: "$totalVentasProducto" }
+    }
+  },
+  {
+    $lookup: {
+      from: "productos",
+      localField: "producto_id",
+      foreignField: "_id",
+      as: "producto"
+    }
+  },
+  { $unwind: "$producto" },
+  {
+    $project: {
+      _id: 0,
+      ano: "$_id.anio",
+      mes: "$_id.mes",
+      totalVentasMes: 1,
+      productoMasVendido: "$producto.nombre",
+      cantidadVendida: 1
+    }
+  }
+])

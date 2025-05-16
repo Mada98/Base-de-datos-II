@@ -1,0 +1,5 @@
+use('tiendaOnline')
+//Tarea 1
+db.productos.aggregate({$match: {categoria: 'Electrónica', precio: {$gt: 500}}})
+//Tarea 2
+db.ventas.aggregate({$match: {estado: 'Entregado', "cliente.pais": 'España'}})

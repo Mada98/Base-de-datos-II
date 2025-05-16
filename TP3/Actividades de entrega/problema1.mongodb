@@ -1,0 +1,16 @@
+use ('tiendaOnline');
+
+db.productos.aggregate([
+    {$unwind: "$valoraciones"},
+    {$group: {
+        _id: "$_id",
+        nombre: {$first: "$nombre"},
+        cantidadValoraciones: {$sum: 1},
+        primedioPuntuacion: {$avg: "$valoraciones.puntuacion"}
+        }   
+    },
+
+    {$match: {cantidadValoraciones: { $gte: 2}}},
+
+    {$sort: {_id: 1}}
+])
