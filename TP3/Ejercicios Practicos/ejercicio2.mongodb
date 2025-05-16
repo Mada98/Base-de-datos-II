@@ -1,9 +1,0 @@
-use('tiendaOnline')
-//Tarea 1
-db.productos.aggregate({$group: 
-    {_id: '$categoria', precioPromedio: {$avg: '$precio'}, precioMaximo: {$max: '$precio'}, precioMinimo: {$min: '$precio'}}
-})
-//Tarea 2
-db.ventas.aggregate({$group: 
-    {_id: '$cliente.pais', cantTransacciones: {$sum: '$cantidad'}, montoTotal: {$sum: '$total'}}
-})
