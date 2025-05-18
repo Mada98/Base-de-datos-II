@@ -1,10 +1,16 @@
 use('tiendaOnline')
-//Borre mi parte porque estaba mal, hay que completarlo
 
 db.ventas.aggregate([{$lookup: 
     {from: 'productos', localField: 'producto_id', foreignField: '_id', as: 'producto_id'}},
     {$unwind: '$producto_id'},
-    {$group: {_id: '$producto_id.nombre', totalVendido: {$sum: 1}}},
+    {$unwind: '$producto_id.valoraciones'},
+    {$group: {
+        _id: '$producto_id.nombre', 
+        categoria: {$first: '$producto_id.categoria'},
+        totalVendido: {$first: '$cantidad'}, 
+        totalGenerado: {$sum: '$total'},
+        puntuacionPromedio: {$avg: '$producto_id.valoraciones.puntuacion'}
+    }},
     {$sort: {totalVendido: -1}},
     {$limit: 3}
 ])

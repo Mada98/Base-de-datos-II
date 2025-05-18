@@ -5,8 +5,7 @@ db.ventas.aggregate([
     {
         $group: {
             _id:{
-                anio: {$year: "$fecha"},
-                mes: {$month: "$fecha"}
+                Mes: {$month: "$fecha"}
             },
             totalVentas: {$sum: "$total"},
             cantidadVentas: {$sum: 1}
@@ -14,8 +13,7 @@ db.ventas.aggregate([
     },
     {
         $sort: {
-            "id_anio": 1,
-            "id_mes": 1
+            "id_Mes": 1
         }
     }
 ])
