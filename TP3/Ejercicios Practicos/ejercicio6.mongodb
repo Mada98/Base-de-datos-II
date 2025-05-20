@@ -1,6 +1,7 @@
 use('tiendaOnline')
 
 //Tarea 1
+//Aclaracion: en los documentos de ventas todos tienen el mismo mes, osea 3
 db.ventas.aggregate([
     {
         $group: {
@@ -19,8 +20,6 @@ db.ventas.aggregate([
 ])
 
 //Tarea 2
-//Falta hacer que dependiendo del numero del dia que da entre 1 y 7, asignarlo a un dia de la semana
-
 db.ventas.aggregate([
     {
         $group:{
