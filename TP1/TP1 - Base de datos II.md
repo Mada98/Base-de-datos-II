@@ -28,6 +28,7 @@ Este nivel es el más estricto ya que las transacciones se ejecutan de manera ai
 ![alt text](imagenes/image-3.png)
 
 Ejercicio 4: 
+
 En este ejercicio lo primero que hacemos es crear una base de datos “Personas” e le insertamos varios registros: 
 ![alt text](imagenes/image-4.png)
 
@@ -52,6 +53,7 @@ Como podemos ver la consulta que realizamos con índice es minimamente más ráp
 Ejercicio 6: 
 
 Para este ejercicio, primero creamos dos tablas, una para registrar los “Productos”: sus nombre y precios, y otra tabla para registrar las “Ventas” de los productos a partir de su ID: 
+
 ![alt text](imagenes/image-8.png)
 
 Luego creamos una vista para ver las ventas mensuales de cada producto registrado: 
@@ -129,6 +131,7 @@ Y Cuando queremos eliminar un empleado en la tabla “Empleados”:
 ![alt text](imagenes/image-24.png)
 
 Podemos ver que en la tabla “auditoria_empleados” queda registrado el “delete” que hicimos recién. 
+
 Ejercicio 9: 
 
 Video paso a paso cómo hacer un Backup y Restore de una base de datos desde Powershell.
