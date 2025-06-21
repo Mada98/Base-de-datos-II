@@ -32,8 +32,14 @@ Ejercicio 4:
 En este ejercicio lo primero que hacemos es crear una base de datos “Personas” e le insertamos varios registros: 
 ![alt text](imagenes/image-4.png)
 
-Luego realizamos una consulta donde quiero que me devuelva las personas con más de 25 años, primero realizamos esta consulta sin índice, después creamos el índice y realizamos nuevamente la misma consulta consulta: 
+Luego realizamos una consulta donde quiero que me devuelva las personas con más de 25 años, primero realizamos esta consulta sin índice: 
 ![alt text](imagenes/image-5.png)
+
+Y ahora creamos el indice y realizamos la misma consulta:
+
+![alt text](imagenes/image-25.png)
+
+![alt text](imagenes/image-26.png)
 
 Podemos notar que la consulta que realizamos con índice es minimamente más rápida que la consulta sin índice. 
 
@@ -45,8 +51,16 @@ En este ejercicio vamos crear primero una base de datos para guardar juegos: sus
 
 Le insertamos a la tabla varios registros para luego realizar una consulta, donde básicamente quiero que me devuelva los nombres de los juegos que sean del género ’’Aventura’’ y que su valoración sea mayor a 9.0. 
 
-Primero vamos a realizar esta consulta sin utilizar índices, para luego crearlos y comparar el rendimiento de ambas consultas 
+Primero vamos a realizar esta consulta sin utilizar índices:
 ![alt text](imagenes/image-7.png)
+
+Ahora creamos el indice y realizamos la consulta para comparar con la consulta anterior:
+
+![alt text](imagenes/image-27.png)
+
+![alt text](imagenes/image-28.png)
+
+![alt text](imagenes/image-29.png)
 
 Como podemos ver la consulta que realizamos con índice es minimamente más rápida que la consulta sin índice. 
 
