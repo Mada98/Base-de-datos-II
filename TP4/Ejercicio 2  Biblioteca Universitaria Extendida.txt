@@ -1,0 +1,62 @@
+// Nodos y Relaciones //
+
+CREATE 
+  (e1:Estudiante {nombre: "Ramiro"}),
+  (e2:Estudiante {nombre: "Marcos"}),
+  (e3:Estudiante {nombre: "Juan"}),
+
+  (c1:Carrera {nombre: "Programacion"}),
+  (c2:Carrera {nombre: "Biologia"}),
+  (c3:Carrera {nombre: "Matematica"}),
+
+  (e1)-[:CURSA]->(c1),
+  (e2)-[:CURSA]->(c2),
+  (e3)-[:CURSA]->(c3);
+
+CREATE
+  (l1:libro {nombre: "Harry Potter"}),
+  (l2:libro {nombre: "Ready or Not"}),
+  (l3:libro {nombre: "SWAT 4"}),
+  (l4:libro {nombre: "Chesterfield"}),
+
+  (ca1:categoria {nombre: "Accion"}),
+  (ca2:categoria {nombre: "Fantasia"}),
+  (ca3:categoria {nombre: "Terror"}),
+  (ca4:categoria {nombre: "Comedia"}),
+
+  (l1)-[:PERTENECE]->(ca1),
+  (l2)-[:PERTENECE]->(ca2),
+  (l3)-[:PERTENECE]->(ca3),
+  (l4)-[:PERTENECE]->(ca4);
+
+MATCH (e1:Estudiante {nombre: "Ramiro"}), (l1:libro {nombre: "Harry Potter"})
+CREATE (e1)-[:PRESTAMO {fecha: date("2025-06-01"), estado: "Activo"}]->(l1);
+
+MATCH (e1:Estudiante {nombre: "Ramiro"}), (l3:libro {nombre: "SWAT 4"})
+CREATE (e1)-[:PRESTAMO {fecha: date("2025-06-15"), estado: "Devuelto"}]->(l3);
+
+MATCH (e2:Estudiante {nombre: "Marcos"}), (l2:libro {nombre: "Ready or Not"})
+CREATE (e2)-[:PRESTAMO {fecha: date("2025-06-20"), estado: "Activo"}]->(l2);
+
+MATCH (e2:Estudiante {nombre: "Marcos"}), (l4:libro {nombre: "Chesterfield"})
+CREATE (e2)-[:PRESTAMO {fecha: date("2025-07-10"), estado: "Devuelto"}]->(l4);
+
+MATCH (e3:Estudiante {nombre: "Juan"}), (l3:libro {nombre: "SWAT 4"})
+CREATE (e3)-[:PRESTAMO {fecha: date("2025-08-25"), estado: "Activo"}]->(l3);
+
+
+// Consultas //
+
+MATCH (e:Estudiante)-[p:PRESTAMO {estado: "Activo"}]->(l:libro)
+RETURN l.nombre AS Libro, e.nombre AS Prestado, p.fecha AS Fecha;
+
+MATCH (e:Estudiante)-[:PRESTAMO]->(l:libro)
+RETURN e.nombre AS Estudiante, COUNT(l) AS Prestamos;
+
+MATCH (e:Estudiante)-[p:PRESTAMO {estado: "Activo"}]->(l:libro)-[:PERTENECE]->(cat:categoria)
+RETURN cat.nombre AS Categoria, COUNT(*) AS PrestamosAc
+ORDER BY PrestamosAc DESC;
+
+MATCH (e:Estudiante)
+WHERE NOT (e)-[:PRESTAMO {estado: "Activo"}]->(:libro)
+RETURN e.nombre AS Estudiante;
