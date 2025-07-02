@@ -1,0 +1,18 @@
+CREATE (emp1:Empleado {nombre:'Juan', departamento:'Alumnos'}), (emp2:Empleado {nombre:'Ramirez', departamento:'Fisica'}), (emp3:Empleado {nombre:'Joaquin', departamento:'Biologia'})
+
+CREATE (proy1:Proyecto {nombre:'Desarrollo de app web'}), (proy2:Proyecto {nombre:'Desarrollo de software'})
+
+CREATE (emp1)-[:ASIGNADO{horas_semanales: 18}]->(proy1)
+CREATE (emp2)-[:ASIGNADO{horas_semanales: 20}]->(proy1)
+CREATE (emp3)-[:LIDER{horas_semanales: 10}]->(proy1)
+
+CREATE (emp3)-[:ASIGNADO{horas_semanales: 14}]->(proy2)
+CREATE (emp2)-[:ASIGNADO{horas_semanales: 19}]->(proy2)
+CREATE (emp1)-[:LIDER{horas_semanales: 8}]->(proy2)
+
+//CONSULTAS
+MATCH (emp:Empleado)-[:ASIGNADO]->(proy:Proyecto)<-[:LIDER]-(lider:Empleado) RETURN emp.nombre as Nombre_Empleado, proy.nombre as Nombre_Proyecto, lider.nombre as Nombre_Lider_Proyecto
+
+MATCH (emp:Empleado)-[r:ASIGNADO]->(proy:Proyecto) RETURN proy.nombre as Proyecto, SUM(r.horas_semanales) as Horas_Semanales
+
+MATCH (emp:Empleado)-[:ASIGNADO|:LIDER]->(proy:Proyecto) WITH emp, COUNT(DISTINCT proy) as Cantidad_Proyectos WHERE Cantidad_Proyectos > 1 RETURN emp.nombre as Empleado, Cantidad_Proyectos
