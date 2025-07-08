@@ -9,7 +9,7 @@ const getAllLibros = async (req, res) => {
     }
 }
 
-//1era funcion agregarLibro(libro) - HECHA
+//1era funcion agregarLibro(libro) - FUNCION HECHA Y CHEQUEADA
 const agregarLibro = async (req, res) => {
     try{
         const nuevoLibro = new Libros(req.body);
