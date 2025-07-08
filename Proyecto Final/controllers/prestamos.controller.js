@@ -20,6 +20,28 @@ const prestarLibro = async (req, res) => {
     }
 }
 
-//3era funcion devolverLibro(prestamoId) - FALTA IMPLEMENTAR
+//3era funcion devolverLibro(prestamoId) - Implementado (revisar y ajustar si es necesario)
+const devolverLibro = async (req, res) => {
+    try {
+        const { prestamoId } = req.params;
 
-module.exports = { getAllPrestamos, prestarLibro }
+        const prestamo = await Prestamos.findById(prestamoId);
+
+        if (!prestamo) {
+            return res.status(404).json({ error: 'Préstamo no encontrado' });
+        }
+
+        // Marcar como devuelto (campo booleano "devuelto")
+        prestamo.devuelto = true;
+        prestamo.fechaDevolucion = new Date();
+
+        await prestamo.save();
+
+        res.status(200).json({ mensaje: 'Libro devuelto correctamente', prestamo });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al devolver el libro' });
+    }
+};
+
+
+module.exports = { getAllPrestamos, prestarLibro, devolverLibro };

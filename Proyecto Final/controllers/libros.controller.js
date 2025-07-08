@@ -20,7 +20,35 @@ const agregarLibro = async (req, res) => {
     }
 }
 
-//4ta funcion buscar libros por criterio, buscarLibros(criterio) - FALTA IMPLEMENTAR
+//4ta funcion buscar libros por criterio, buscarLibros(criterio) - Implementado (revisar y ajustar si es necesario)
+const buscarLibros = async (req, res) => {
+    try {
+        const criterio = req.query.criterio;
 
-//5ta funcion reporte populares, reportePopulares() - FALTA IMPLEMENTAR
-module.exports = { getAllLibros, agregarLibro }
+        // Buscar libros que coincidan parcialmente en título, autor o género
+        const libros = await Libros.find({
+            $or: [
+                { titulo: { $regex: criterio, $options: 'i' } },
+                { autor: { $regex: criterio, $options: 'i' } },
+                { genero: { $regex: criterio, $options: 'i' } }
+            ]
+        });
+
+        res.status(200).json(libros);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al buscar los libros' });
+    }
+}
+
+//5ta funcion reporte populares, reportePopulares() - Implementado (revisar y ajustar si es necesario)
+const reportePopulares = async (req, res) => {
+    try {
+        // Obtener los 5 libros más populares, ordenados por cantidad de préstamos
+        const librosPopulares = await Libros.find().sort({ cantidadPrestamos: -1 }).limit(5);
+
+        res.status(200).json(librosPopulares);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al generar el reporte de libros populares' });
+    }
+}
+module.exports = { getAllLibros, agregarLibro, buscarLibros, reportePopulares };
