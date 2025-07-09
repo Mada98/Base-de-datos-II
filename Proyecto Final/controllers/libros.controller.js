@@ -21,7 +21,7 @@ const agregarLibro = async (req, res) => {
     }
 }
 
-//4ta funcion buscar libros por criterio, buscarLibros(criterio) - Implementado (revisar y ajustar si es necesario)
+//4ta funcion buscar libros por criterio, buscarLibros(criterio) - FUNCION HECHA Y CHEQUEADA
 const buscarLibros = async (req, res) => {
     try {
         const criterio = req.query.criterio;
