@@ -40,6 +40,9 @@ const prestarLibro = async (req, res) => {
         dispo = libro.disponibles
         libro.disponibles = dispo - 1
 
+        cant = libro.cantidadPrestamos
+        libro.cantidadPrestamos = cant + 1
+
         await libro.save()
         await nuevoPrestamo.save()
         res.status(201).json(nuevoPrestamo);

@@ -7,7 +7,8 @@ const LibrosSchema = new mongoose.Schema({
   genero: String,
   anioPublicacion: Number,
   copias: Number,
-  disponibles: Number
+  disponibles: Number,
+  cantidadPrestamos: Number
 }, {
   timestamps: true
 });

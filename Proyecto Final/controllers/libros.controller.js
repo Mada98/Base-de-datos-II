@@ -13,6 +13,7 @@ const getAllLibros = async (req, res) => {
 const agregarLibro = async (req, res) => {
     try{
         const nuevoLibro = new Libros(req.body);
+        nuevoLibro.cantidadPrestamos = 0
         await nuevoLibro.save();
         res.status(201).json(nuevoLibro);
     }catch (error){
@@ -40,7 +41,7 @@ const buscarLibros = async (req, res) => {
     }
 }
 
-//5ta funcion reporte populares, reportePopulares() - Implementado (revisar y ajustar si es necesario)
+//5ta funcion reporte populares, reportePopulares() - FUNCION HECHA Y CHEQUEADA
 const reportePopulares = async (req, res) => {
     try {
         // Obtener los 5 libros más populares, ordenados por cantidad de préstamos

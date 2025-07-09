@@ -4,6 +4,6 @@ const {getAllPrestamos, prestarLibro, devolverLibro} = require('../controllers/p
 
 router.get('/', getAllPrestamos)
 router.post('/', prestarLibro)
-router.post('/dev', devolverLibro)
+router.post('/devolver', devolverLibro)
 
 module.exports = router
