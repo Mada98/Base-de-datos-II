@@ -45,7 +45,7 @@ const prestarLibro = async (req, res) => {
 
         await libro.save()
         await nuevoPrestamo.save()
-        res.status(201).json(nuevoPrestamo);
+        res.status(201).json({ mensaje: 'Prestamo realizado correctamente', nuevoPrestamo});
     } catch (error) {
         res.status(500).json({ error: 'Error al crear un prestamo' });
     }

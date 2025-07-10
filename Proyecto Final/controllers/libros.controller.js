@@ -15,7 +15,7 @@ const agregarLibro = async (req, res) => {
         const nuevoLibro = new Libros(req.body);
         nuevoLibro.cantidadPrestamos = 0
         await nuevoLibro.save();
-        res.status(201).json(nuevoLibro);
+        res.status(201).json({mensaje: 'Libro creado correctamente', nuevoLibro});
     }catch (error){
         res.status(400).json({error: 'Error al crear el libro'})
     }
