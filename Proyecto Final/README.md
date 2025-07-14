@@ -113,6 +113,7 @@ curl -X POST http://localhost:3000/Prestamos \
 
 + Devolver un Libro
 ```bash
+# POST - Devolver un libro
 curl -X POST http://localhost:3000/Prestamos/devolver \
   -H "Content-Type: application/json" \
   -d '{
