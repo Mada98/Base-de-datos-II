@@ -29,7 +29,7 @@ Comandos para probar la API usando CURL desde la terminal mas abajo ⬇️.
     ```bash
     git clone <URL-DEL-REPOSITORIO>
     ```
-2. Entrar a la carpeta donde se encuentra el proyecto.
+2. Abrir el repositorio clonado anteriormente en el Visual Studio Code y entrar a la carpeta donde se encuentra el proyecto.
 
     ```bash
     cd Proyecto Final
@@ -47,7 +47,7 @@ Comandos para probar la API usando CURL desde la terminal mas abajo ⬇️.
 ## 🔗 Endpoints
 
 + Libros: http://localhost:3000/libros
-+ Prestamos: http://locahost:3000/prestamos
++ Prestamos: http://localhost:3000/prestamos
 
 ## 🔍 Testing API con Curl
 Comandos para probar la API usando CURL desde la terminal
@@ -79,7 +79,7 @@ curl http://localhost:3000/libros/populares
 
 ```bash
 # GET - Lista de Prestamos
-curl http://locahost:3000/prestamos
+curl http://localhost:3000/prestamos
 ```
 
 ### POST
