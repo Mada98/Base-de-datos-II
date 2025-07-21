@@ -21,7 +21,7 @@ Una API implementada con 'Node.js (JavaScript)' utilizando 'Mongoose'.
 
 Comandos para probar la API usando CURL desde la terminal mas abajo ⬇️.
 
----
+--
 
 ## 🏗️ Inicializar el Proyecto
 1. Clonar el repositorio actual.
